@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("bcu-plugin")
     id("dokit-compat")
 }
@@ -52,7 +51,7 @@ dokitExt {
 
 android {
     namespace = "com.ysj.demo.dokit"
-    compileSdk = 33
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ysj.demo.dokit"
@@ -84,9 +83,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
     }
     buildFeatures {
         viewBinding = true

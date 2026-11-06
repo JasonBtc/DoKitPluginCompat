@@ -1,11 +1,11 @@
 ## DoKitPluginCompat
 
-由于 [DoKit](https://github.com/didi/DoKit) 插件在官方并不兼容 `AGP8+`，因此如果你想在高版本的 `AGP` 上使用 `DoKit` 可以使用本项目的兼容插件包。兼容插件包中对字节码的修改基于 [BCU](https://github.com/Ysj001/BytecodeUtil) 的 `IModifier` 接口，通过该接口的实现类来代理并驱动 `DoKit` 插件中的所有 `Transformer` 进而兼容原 `Dokit` 插件的功能。
+由于 [DoKit](https://github.com/didi/DoKit) 插件官方未适配 AGP 9，本项目通过 [BCU](https://github.com/JasonBtc/BytecodeUtil) 的 `IModifier` 接口代理并驱动 DoKit 的 `Transformer`，提供 AGP 9 兼容能力。当前版本使用 AGP 9.5、Gradle 9.6 和 BytecodeUtil 2.2.0-agp9 构建验证。
 
 本兼容包的主版本和 DoKit 保持一致便于理解和使用，例子：
 
 - 官方插件依赖：io.github.didi.dokit:dokitx-plugin:3.7.1
-- 兼容插件依赖：com.github.Ysj001:DoKitPluginCompat:3.7.1-v1
+- 兼容插件依赖：com.github.JasonBtc:DoKitPluginCompat:3.7.1-agp9
 
 **注意！不要同时使用兼容插件和官方插件**
 
@@ -28,8 +28,8 @@
 
 1. 推荐使用下面所示的最新版本：
 
-   - BCU：[![](https://jitpack.io/v/Ysj001/BytecodeUtil.svg)](https://jitpack.io/#Ysj001/BytecodeUtil)
-   - DoKitPluginCompat：[![](https://jitpack.io/v/Ysj001/DoKitPluginCompat.svg)](https://jitpack.io/#Ysj001/DoKitPluginCompat)
+   - BCU：[![](https://jitpack.io/v/JasonBtc/BytecodeUtil.svg)](https://jitpack.io/#JasonBtc/BytecodeUtil)
+   - DoKitPluginCompat：[![](https://jitpack.io/v/JasonBtc/DoKitPluginCompat.svg)](https://jitpack.io/#JasonBtc/DoKitPluginCompat)
 
 2. 在项目的根 `build.gradle.kts` 中配置如下
 
@@ -42,9 +42,9 @@
        
        dependencies {
            // BCU 插件依赖
-           classpath("com.github.Ysj001.BytecodeUtil:plugin:<lastest-version>")
+           classpath("com.github.JasonBtc.BytecodeUtil:plugin:2.2.0-agp9")
            // DoKitPluginCompat 依赖
-           classpath("com.github.Ysj001:DoKitPluginCompat:<lastest-version>")
+           classpath("com.github.JasonBtc:DoKitPluginCompat:3.7.1-agp9")
        }
    }
    

@@ -17,15 +17,13 @@ const val MAVEN_CENTRAL_SNAPSHOTS = "https://s01.oss.sonatype.org/content/reposi
 val Project.MAVEN_LOCAL: URI
     get() = File(rootDir, "repos").toURI()
 
-const val POM_URL = "https://github.com/Ysj001/BytecodeUtil"
+const val POM_URL = "https://github.com/JasonBtc/DoKitPluginCompat"
 
 const val POM_LICENCE_NAME = "Apache-2.0 License"
 const val POM_LICENCE_URL = "http://www.apache.org/licenses/LICENSE-2.0.txt"
 
-const val POM_DEVELOPER_ID = "github_Ysj001"
-const val POM_DEVELOPER_NAME = "Ysj"
-const val POM_DEVELOPER_EMAIL = "543501451@qq.com"
-
+const val POM_DEVELOPER_ID = "github_JasonBtc"
+const val POM_DEVELOPER_NAME = "JasonBtc"
 fun Project.applyMavenLocal(handler: RepositoryHandler) = handler.maven {
     url = MAVEN_LOCAL
 }

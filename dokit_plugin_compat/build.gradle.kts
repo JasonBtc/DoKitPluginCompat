@@ -3,8 +3,8 @@ plugins {
     id("kotlin")
 }
 
-group = properties["lib.groupId"] as String
-version = properties["dokit.version"] as String
+group = providers.gradleProperty("lib.groupId").get()
+version = providers.gradleProperty("dokit.compat.version").get()
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -13,7 +13,7 @@ java {
 
 dependencies {
     implementation(gradleApi())
-    implementation(properties["bcu.plugin.api"] as String)
+    implementation(providers.gradleProperty("bcu.plugin.api").get())
     compileOnly("com.android.tools.build:gradle-api:$ANDROID_GRADLE_VERSION")
     implementation(dokit_plugin)
 }

@@ -39,28 +39,28 @@ class DoKitTransformCompat(
 
     override fun initialize(project: Project, variant: Variant) {
         super.initialize(project, variant)
-        DoKitExtUtil.DOKIT_PLUGIN_SWITCH = project.properties["DOKIT_PLUGIN_SWITCH"]
+        DoKitExtUtil.DOKIT_PLUGIN_SWITCH = project.findProperty("DOKIT_PLUGIN_SWITCH")
             ?.toString()?.toBooleanStrictOrNull() ?: true
-        DoKitExtUtil.DOKIT_LOG_SWITCH = project.properties["DOKIT_LOG_SWITCH"]
+        DoKitExtUtil.DOKIT_LOG_SWITCH = project.findProperty("DOKIT_LOG_SWITCH")
             ?.toString()?.toBooleanStrictOrNull() ?: false
-        DoKitExtUtil.SLOW_METHOD_SWITCH = project.properties["DOKIT_METHOD_SWITCH"]
+        DoKitExtUtil.SLOW_METHOD_SWITCH = project.findProperty("DOKIT_METHOD_SWITCH")
             ?.toString()?.toBooleanStrictOrNull() ?: false
-        DoKitExtUtil.SLOW_METHOD_STRATEGY = project.properties["DOKIT_METHOD_STRATEGY"]
+        DoKitExtUtil.SLOW_METHOD_STRATEGY = project.findProperty("DOKIT_METHOD_STRATEGY")
             ?.toString()?.toIntOrNull() ?: SlowMethodExt.STRATEGY_STACK
-        DoKitExtUtil.STACK_METHOD_LEVEL = project.properties["DOKIT_METHOD_STACK_LEVEL"]
+        DoKitExtUtil.STACK_METHOD_LEVEL = project.findProperty("DOKIT_METHOD_STACK_LEVEL")
             ?.toString()?.toIntOrNull() ?: 5
-        DoKitExtUtil.WEBVIEW_CLASS_NAME = project.properties["DOKIT_WEBVIEW_CLASS_NAME"]
-            ?.toString() ?: ""
+        DoKitExtUtil.WEBVIEW_CLASS_NAME = project.findProperty("DOKIT_WEBVIEW_CLASS_NAME")
+            ?.toString().orEmpty()
         val applicationId = if (variant is ApplicationVariant) variant.applicationId.get() else ""
         context = MTransformContext(
             applicationId = applicationId,
-            buildDir = project.buildDir,
+            buildDir = project.layout.buildDirectory.get().asFile,
             isDataBindingEnabled = false,
             isDebuggable = true,
             originalApplicationId = applicationId,
             projectDir = project.projectDir,
-            reportsDir = File(project.buildDir, "reports").also { it.mkdirs() },
-            temporaryDir = File(project.buildDir, "temp"),
+            reportsDir = project.layout.buildDirectory.dir("reports").get().asFile.also { it.mkdirs() },
+            temporaryDir = project.layout.buildDirectory.dir("temp").get().asFile,
         )
     }
 

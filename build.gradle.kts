@@ -3,7 +3,10 @@
 buildscript {
     repositories {
         applyMavenLocal(this)
-        maven { setUrl("https://maven.aliyun.com/nexus/content/groups/public/") }
+        maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
+        maven { setUrl("https://maven.aliyun.com/repository/google") }
+        maven { setUrl("https://maven.aliyun.com/repository/central") }
+        maven { setUrl("https://maven.aliyun.com/repository/public") }
         maven { setUrl("https://jitpack.io") }
         google()
         mavenCentral()
@@ -26,7 +29,9 @@ buildscript {
 subprojects {
     repositories {
         applyMavenLocal(this)
-        maven { setUrl("https://maven.aliyun.com/nexus/content/groups/public/") }
+        maven { setUrl("https://maven.aliyun.com/repository/google") }
+        maven { setUrl("https://maven.aliyun.com/repository/central") }
+        maven { setUrl("https://maven.aliyun.com/repository/public") }
         maven { setUrl("https://jitpack.io") }
         google()
         mavenCentral()
@@ -35,5 +40,5 @@ subprojects {
 }
 
 tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }
